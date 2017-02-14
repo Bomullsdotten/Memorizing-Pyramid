@@ -14,3 +14,4 @@ if __name__ == "__main__":
     conf.add_view(hi, route_name='home')
     app = conf.make_wsgi_app()
     server = make_server('0.0.0.0', 6500, app)
+    server.serve_forever()
