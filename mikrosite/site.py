@@ -4,8 +4,8 @@ from pyramid.response import Response
 from pyramid.config import Configurator
 
 def hi(request):
-    print("geting the hands of it now.")
-    return Response("<body><h1>Shld i change things up?</h1></body>")
+    print("getting the hands of it now.")
+    return Response("<body><h1>Should i change things up?</h1></body>")
 
 
 if __name__ == '__main__':
