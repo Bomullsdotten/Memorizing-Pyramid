@@ -1,10 +1,20 @@
-from pyramid.response import Response
 from pyramid.view import view_config
+from pyramid.view import view_defaults
 
-@view_config(route_name='home')
-def home(request):
-    return Response('<body> A link <a href="/hello">To somewhere</a></body>')
 
-@view_config(route_name='hi')
-def hi(request):
-    return Response('<body> Another link <a href="/">To somewhere else</a></body>')
+@view_defaults(renderer='home.jinja2')
+class PageViews:
+    def __init__(self, request):
+        self.request = request
+
+    @view_config(route_name='home')
+    def home(self):
+        return dict(
+            name='Home View'
+        )
+
+    @view_config(route_name='hi')
+    def hi(self):
+        return dict(
+            name='Hello View'
+        )
