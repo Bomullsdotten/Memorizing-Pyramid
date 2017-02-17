@@ -10,12 +10,23 @@ class MyTestCase(unittest.TestCase):
     def tearDown(self):
         testing.tearDown()
 
-    def test_hello_world(self):
-        from pack import hello_world
-        request = testing.DummyRequest()
-        response = hello_world(request)
-        self.assertEqual(response.status_code, 200)
+    def test_home(self):
+        from .views import home
 
+        request = testing.DummyRequest()
+        response = home(request)
+
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b'A link', response.body)
+
+    def test_hi(self):
+        from .views import hi
+
+        request = testing.DummyRequest()
+        respones = hi(request)
+
+        self.assertEqual(respones.status_code, 200)
+        self.assertIn(b"Another link", respones.body)
 
 class FunctionalTestCase(unittest.TestCase):
     def setUp(self):
@@ -25,11 +36,12 @@ class FunctionalTestCase(unittest.TestCase):
 
         self.testapp = TestApp(app)
 
-    def test_hello_world(self):
+    def test_home(self):
+        res = self.testapp.get('/', status=200)
+        self.assertIn(b'<body> A link', res.body)
 
-        response = self.testapp.get('/', status=200)
-        self.assertIn(b'<h1>testing</h1>', response.body)
-
-
+    def test_hi(self):
+        res = self.testapp.get('/hello', status=200)
+        self.assertIn(b'<body> Another link', res.body)
 if __name__ == '__main__':
     unittest.main()
