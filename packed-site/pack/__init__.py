@@ -7,6 +7,7 @@ def main(global_config, **settings):
     config.include('pyramid_jinja2')
     config.add_route('home', '/')
     config.add_route('hi', '/hello')
+    config.add_route('hi_json', 'hello.json')
     config.add_static_view(name='static', path='pack:static')
     config.scan('.views')
     return config.make_wsgi_app()

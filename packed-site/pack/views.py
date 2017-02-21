@@ -14,6 +14,7 @@ class PageViews:
         )
 
     @view_config(route_name='hi')
+    @view_config(route_name='hi_json', renderer='json')
     def hi(self):
         return dict(
             name='Hello View'

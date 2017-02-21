@@ -45,5 +45,10 @@ class FunctionalTestCase(unittest.TestCase):
         res = self.testapp.get('/hello', status=200)
         self.assertIn(b'<h1>Hi Hello View', res.body)
 
+    def test_hi_json(self):
+        res = self.testapp.get('/hello.json', status=200)
+        self.assertIn(b'{"name": "Hello View"}', res.body)
+        self.assertEqual(res.content_type, 'application/json')
+
 if __name__ == '__main__':
     unittest.main()
