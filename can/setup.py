@@ -1,7 +1,7 @@
 from setuptools import setup
 
 requires = [
-    'pyramid'
+    'pyramid',
 ]
 
 setup(
