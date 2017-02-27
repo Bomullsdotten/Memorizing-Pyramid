@@ -7,7 +7,7 @@ requires = [
 setup(
     name='canister',
     install_requires=requires,
-    hooks="""
+    entry_points="""
     [paste.app_factory]
     main = canned:main"""
 )
