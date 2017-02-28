@@ -2,11 +2,11 @@ import unittest
 
 from pyramid import testing
 
+
 class UnitTests(unittest.TestCase):
 
     def setUp(self):
         self.config = testing.setUp()
-        #some more here...
 
     def tearDown(self):
         testing.tearDown()
@@ -28,13 +28,12 @@ class UnitTests(unittest.TestCase):
 
 from webtest import TestApp
 
+
 class FunctionalTests(unittest.TestCase):
     def setUp(self):
         from canned import main
         app = main({})
         self.app = TestApp(app)
-        #think this is right
-
 
     def test_home(self):
         response = self.app.get('/')
