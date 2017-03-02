@@ -26,7 +26,7 @@ class HomeViews:
             title='Home view'
         )
 
-    @view_config(route_name='page')
+    @view_config(route_name='page', permission='edit')
     def page(self):
         log.debug('value of self.logged_in is ' + str(self.logged_in))
         return dict(

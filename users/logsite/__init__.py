@@ -4,8 +4,8 @@ from pyramid.config import Configurator
 
 from .security import group_finder
 
-def main(global_conf, **settings):
-    config = Configurator(settings=settings)
+def main(global_config, **settings):
+    config = Configurator(settings=settings, root_factory='.resources.Root')
     config.include('pyramid_jinja2')
 
     auth_policy = AuthTktAuthenticationPolicy(
