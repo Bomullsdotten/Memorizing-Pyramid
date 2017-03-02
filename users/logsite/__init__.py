@@ -2,15 +2,16 @@ from pyramid.authentication import AuthTktAuthenticationPolicy
 from pyramid.authorization import ACLAuthorizationPolicy
 from pyramid.config import Configurator
 
-from .security import groupfinder
+from .security import group_finder
 
-def main(globals, **settings):
+def main(global_conf, **settings):
     config = Configurator(settings=settings)
     config.include('pyramid_jinja2')
 
     auth_policy = AuthTktAuthenticationPolicy(
         settings['user_site.secret'],
-        callback=groupfinder
+        callback=group_finder,
+        hashalg='sha512'
     )
     authz_policy = ACLAuthorizationPolicy()
     config.set_authentication_policy(auth_policy)

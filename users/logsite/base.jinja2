@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{ title }}</title>
+</head>
+<body>
+<div>
+    {% if view.logged_in %}
+    <a href="{{ request.application_url }}/logout">Logout</a>
+    {% else %}
+    <a href="{{ request.application_url }}/login">Log In</a>
+    {% endif %}
+</div>
+<h1>Hello {{ title }}</h1>
+<p>Visit <a href="{{ request.route_url('page') }}">Page</a></p>
+</body>
+</html>
